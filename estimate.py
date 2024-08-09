@@ -1,9 +1,13 @@
+""" Reads the values from thetas file
+
+Returns:
+	list -- list of theta values
+"""
 def read_thetas():
 	try:
 		thetas = open("thetas", "r")
 	except:
-		print("Error: Could not open file")
-		exit()
+		return [0, 0]
 
 	theta = thetas.read().split(',')
 
@@ -11,16 +15,24 @@ def read_thetas():
 		theta = [float(i) for i in theta]
 		thetas.close()
 	except:
-		print("Error: Could not convert theta values to float")
-		exit()
+		return [0, 0]
 
 	return theta
 
-def estimate_price(mileage):
-	theta = read_thetas()
 
-	return theta[0] + (theta[1] * mileage)
+""" Estimates the price of a car given its mileage
 
+Arguments:
+	mileage {float} -- mileage of the car
+
+Returns:
+	float -- estimated price of the car
+"""
+def estimate_price(theta0, theta1, mileage):
+	return theta0 + (theta1 * mileage)
+
+
+""" Main function """
 def main():
 	mileage = input("Enter mileage: ")
 	try:
@@ -29,7 +41,8 @@ def main():
 		print("Error: Could not convert mileage to float")
 		exit()
 
-	price = estimate_price(mileage)
+	thetas = read_thetas()
+	price = estimate_price(thetas[0], thetas[1], mileage)
 	print("Estimated price: ", price)
 
 if __name__ == "__main__":
