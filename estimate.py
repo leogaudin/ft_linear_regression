@@ -5,13 +5,8 @@ Returns:
 """
 def read_thetas():
 	try:
-		thetas = open("thetas", "r")
-	except:
-		return [0, 0]
-
-	theta = thetas.read().split(',')
-
-	try:
+		thetas = open('thetas', 'r')
+		theta = thetas.read().split(',')
 		theta = [float(i) for i in theta]
 		thetas.close()
 	except:
@@ -34,16 +29,15 @@ def estimate_price(theta0, theta1, mileage):
 
 """ Main function """
 def main():
-	mileage = input("Enter mileage: ")
 	try:
+		mileage = input('Enter mileage: ')
 		mileage = float(mileage)
+		thetas = read_thetas()
+		price = estimate_price(thetas[0], thetas[1], mileage)
+		print('Estimated price: ', price)
 	except:
-		print("Error: Could not convert mileage to float")
+		print('Error during estimation')
 		exit()
 
-	thetas = read_thetas()
-	price = estimate_price(thetas[0], thetas[1], mileage)
-	print("Estimated price: ", price)
-
-if __name__ == "__main__":
+if __name__ == '__main__':
 	main()

@@ -1,6 +1,7 @@
 .DS_Store
 .vscode/
 v_env/
+thetas
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
