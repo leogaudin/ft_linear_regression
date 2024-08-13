@@ -97,11 +97,11 @@ The algorithm works as follows:
 The formula to update the $θ_{0}$ and $θ_{1}$ is:
 
 $$
-theta_{0} = theta_{0} - α \frac{1}{m} \sum_{i=1}^{m} (y_{i} - \hat{y}_{i})
+theta_{0} = theta_{0} - alpha \frac{1}{m} \sum_{i=1}^{m} (y_{i} - \hat{y}_{i})
 
 \\\\
 
-theta_{1} = theta_{1} - α \frac{1}{m} \sum_{i=1}^{m} (y_{i} - \hat{y}_{i})x_{i}
+theta_{1} = theta_{1} - alpha \frac{1}{m} \sum_{i=1}^{m} (y_{i} - \hat{y}_{i})x_{i}
 $$
 
 Where:
