@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 class lin_reg:
     def __init__(self, file="data.csv"):
         # Init hyperparameters
-        self.learning_rate = 0.1
+        self.learning_rate = 0.01
         self.theta0 = 0
         self.theta1 = 0
 
@@ -77,7 +77,6 @@ class lin_reg:
         and updating thetas in the appropriate direction.
         """
         max_epoch = 1000
-        weighted_learning_rate = self.learning_rate / self.m
 
         # # Plot evolution of hypothesis
         # plt.figure()
@@ -87,8 +86,8 @@ class lin_reg:
         # Main loop
         for epoch in range(max_epoch + 1):
             t0_error, t1_error, loss = self.calculate_errors()
-            self.theta0 -= weighted_learning_rate * t0_error
-            self.theta1 -= weighted_learning_rate * t1_error
+            self.theta0 -= self.learning_rate * t0_error
+            self.theta1 -= self.learning_rate * t1_error
             self.loss_acc.append(loss)
 
             if len(self.loss_acc) > 1 and round(self.loss_acc[-1], 7) == round(
@@ -117,10 +116,9 @@ class lin_reg:
         plot_final_state(self)
         plot_loss(self)
 
-    """ Stores the theta values in the thetas file
-    """
-
     def store_thetas(self):
+        """ Stores the theta values in the thetas file
+        """
         try:
             output = open("thetas", "w")
             output.write(str(self.theta0) + "," + str(self.theta1))
@@ -130,10 +128,8 @@ class lin_reg:
             exit()
 
 
-""" Main function """
-
-
 def main():
+    """ Main function """
     lr = lin_reg()
     lr.train()
     lr.store_thetas()
