@@ -1,4 +1,7 @@
-<h1 align='center'>📈 ft_linear_regression</h1>
+<div align='center'>
+	<h1>📈 ft_linear_regression</h1>
+	<img src="https://img.shields.io/badge/-125%2F100-success?logo=42&logoColor=fff" />
+</div>
 
 **`ft_linear_regression` is the first project of the Machine Learning branch at 42.**
 
