@@ -155,9 +155,9 @@ Because of this, the gradient of $θ_{1}$ is much larger than the gradient of $�
 
 The correct value of $θ_{1}$ is a small number, for example -0.02. A change of 1,000,000 is much too large. The error then becomes larger, and the next change is larger too. The values keep growing until the program crashes.
 
-To prevent this, we scale the mileage so that its values are small. If the mileage is about 1, the change of $θ_{1}$ is also about **10**. Now both parameters change by a similar amount.
-
 > In practice, the code would crash anyway because $θ_{1}$ would explode.
+
+To prevent this, we scale the mileage so that its values are small.
 
 In our case, we will use the **standardization** method (because the min-max scaling was a pain to reverse later).
 
