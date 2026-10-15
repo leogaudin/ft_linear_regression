@@ -139,13 +139,25 @@ Why do we use these formulas to update the $θ_{0}$ and $θ_{1}$?
 
 ## Feature Scaling
 
-If we implement this code as is, we might run into a problem: the mileage is in the hundreds of thousands, while the price is in the thousands.
+If we use the raw data, the training fails. The mileage values are very large (hundreds of thousands).
 
-This means that the $θ_{1}$ will be updated more for the mileage than for the price, which is not what we want.
+Look at the update formulas. The formula for $θ_{1}$ multiplies the error by the mileage. The formula for $θ_{0}$ does not.
 
-> Anyways, the code would crash because $θ_{1}$ would be way too high.
+Because of this, the gradient of $θ_{1}$ is much larger than the gradient of $θ_{0}$. Both parameters use the same learning rate `α`. This causes a problem:
 
-To avoid this, we need to scale the features.
+- If `α` is good for $θ_{0}$, $θ_{1}$ changes too much. It goes past the best value and the error increases.
+- If `α` is good for $θ_{1}$, $θ_{0}$ changes too little. The training takes too long.
+
+**Example:** The average error is 1,000. The average mileage is 100,000. The learning rate α is 0.01.
+
+- Change of $θ_{0}$: 0.01 × 1,000 = **10**
+- Change of $θ_{1}$: 0.01 × 1,000 × 100,000 = **1,000,000**
+
+The correct value of $θ_{1}$ is a small number, for example -0.02. A change of 1,000,000 is much too large. The error then becomes larger, and the next change is larger too. The values keep growing until the program crashes.
+
+To prevent this, we scale the mileage so that its values are small. If the mileage is about 1, the change of $θ_{1}$ is also about **10**. Now both parameters change by a similar amount.
+
+> In practice, the code would crash anyway because $θ_{1}$ would explode.
 
 In our case, we will use the **standardization** method (because the min-max scaling was a pain to reverse later).
 
