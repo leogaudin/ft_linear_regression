@@ -139,7 +139,7 @@ Why do we use these formulas to update the $θ_{0}$ and $θ_{1}$?
 
 ## Feature Scaling
 
-If we implement this code as is, we might run into a problem: the mileage is in the thousands, while the price is in the tens of thousands.
+If we implement this code as is, we might run into a problem: the mileage is in the hundreds of thousands, while the price is in the thousands.
 
 This means that the $θ_{1}$ will be updated more for the mileage than for the price, which is not what we want.
 
